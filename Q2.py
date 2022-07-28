@@ -2,7 +2,7 @@ a=int(input("a:"))
 b=a
 sum=0
 cycle=1
-for i in range(10):
+for i in range(20):
     if b>0 and b<10:
         b='0'+str(b)
         sum=int(b)
