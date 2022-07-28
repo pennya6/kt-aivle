@@ -7,6 +7,6 @@ elif company=='B':
     if using<=50:
         charge=using*150
     else:
-        charge=using*75
+        charge=50*150+(using-50)*75
 print(f'요금은 {charge}입니다.')
         
