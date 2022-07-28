@@ -1,18 +1,22 @@
 a=int(input("a:"))
+b=a
 sum=0
-cycle=0
+cycle=1
 for i in range(10):
-    if a>0 and a<10:
-        a='0'+str(a)
-        sum=int(a)
+    if b>0 and b<10:
+        b='0'+str(b)
+        sum=int(b)
     else:
-        sum=a%10+a//10
-    new_a=str(a%10)+str(sum%10)
+        sum=b%10+b//10
+    new_a=str(b%10)+str(sum%10)
     
-    print(new_a)
-    if new_a==a:
+    print('n:',new_a)
+    print('b:',b)
+    print('a:',a)
+    
+    if int(new_a)==a:
         break
     else:
-        a=int(new_a)
+        b=int(new_a)
     cycle=cycle+1
 print(cycle)
