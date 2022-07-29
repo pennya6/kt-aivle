@@ -1,17 +1,11 @@
-def search(x,a):
-    pl=0
-    pr=len(a)-1
+def search(a, key):
+    i = 0
     while True:
-        pc=(pl+pr)//2
-        if x[pc]==a:
-            return pc
-        elif x[pc]<a:
-            pl=pr+1
-        else:
-            pr=pc-1
-        if pl>pr:
-            break
-    return -1
+        if i == len(a):
+            return -1
+        if a[i] == key:
+            return i
+        i += 1
         
 n=int(input('원소 수를 입력하세요. : '))
 x=[]
