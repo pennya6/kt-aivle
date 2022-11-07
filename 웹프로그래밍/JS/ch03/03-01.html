@@ -4,7 +4,15 @@
         <meta charset="utf-8">
         <title>03-01</title>
         <script type="text/javascript">
-         
+            var f1=new Function("x","y","return x+y");
+            //선언적 함수
+            function f2(x,y){
+                return x-y;
+            }
+            //리터널 함수
+            var f3=function(x,y){
+                return x*y;
+            }
         </script>
     </head>
     <body>
