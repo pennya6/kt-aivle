@@ -4,7 +4,18 @@
         <meta charset="utf-8">
         <title>03-08</title>
         <script type="text/javascript">
-          
+            function test(a){
+                console.log("good!")
+                console.log(typeof(a))
+                a()
+            }
+            var f=function(){
+                console.log("hello")
+            }
+            var a="JS"
+            test(function(){
+                console.log("test!!")
+            })
         </script>
     </head>
     <body>
