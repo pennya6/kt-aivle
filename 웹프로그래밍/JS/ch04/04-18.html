@@ -4,7 +4,17 @@
     <meta charset="utf-8">
     <title>04-18</title>
     <script type="text/javascript">
-     
+      function Person(name,age){
+        this.name=name;
+        this.age=age;  
+      }
+
+      Person.prototype.getInfo=function(){
+        return this.name+":"+this.age;
+      };
+
+      var p1=new Person("홍길동",20);
+      var p2=new Person("이순신",50);
      
     </script>
     </head>

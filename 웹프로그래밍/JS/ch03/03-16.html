@@ -4,6 +4,15 @@
         <meta charset="utf-8">
         <title>03-16</title>
         <script type="text/javascript">
+            var g="GLOBAL";
+            function test(){
+                console.log(g);
+                if (false){
+                    var g="TEST";
+                }
+                console.log(g);
+            }
+            test();
            
         </script>
     </head>

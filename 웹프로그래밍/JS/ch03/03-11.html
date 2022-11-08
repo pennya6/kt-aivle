@@ -4,7 +4,14 @@
         <meta charset="utf-8">
         <title>03-11</title>
         <script type="text/javascript">
-           
+            function A(){
+                B();
+                console.log('world');
+            }
+            function B(){
+                console.log("hello");
+            }
+            A();
 
         </script>
     </head>

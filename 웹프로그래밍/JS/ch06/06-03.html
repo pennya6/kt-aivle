@@ -7,9 +7,9 @@
 </head>
 <body>
    <div id="simple">
-     <input id="a" type="text" >
+     <input id="a" type="text" v-bind:value="message">
      <br />
-     <img />
+     <img v-bind:src="imagePath" />
    </div>
 
   <script type="text/javascript">
@@ -19,7 +19,8 @@
     };
 
     var simple = new Vue({
-       
+      el:'#simple',
+      data:model
     })
   </script>
 </body>

@@ -17,6 +17,14 @@
                     { name : "하니", score : 90 }
                 ]
             }; 
+            var initVal=""
+            data.scores.reduce(function(preVal,curVal,curIndex){
+                if(curVal.score>=80){
+                    return preVal+curval.name+" ";
+                }else{
+                    return preVal;
+                }
+            },initVal);
                
 
         </script>

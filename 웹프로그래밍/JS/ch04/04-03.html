@@ -4,9 +4,19 @@
       <meta charset="utf-8">
       <title>04-03</title>
       <script type="text/javascript">
-        
-
+         var p1={name:"김시연",age:30}
+         //추가작업
+         p1.addr="서울"
+         p1["tel"]="010-0000-00000"
+         p1.getInfo=function(){
+            console.log("hello")
+         }
+         // 객체 안의 구조 확인
          console.dir(p1);
+
+         for (var k in p1){
+            console.log(k+":"+p1[k])
+         }
       </script>
    </head>
    <body>

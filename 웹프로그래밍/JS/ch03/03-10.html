@@ -4,7 +4,15 @@
         <meta charset="utf-8">
         <title>03-10</title>
         <script type="text/javascript">
-           
+            var setmessage=function(message){
+                return function(name){
+                    return message+" "+name;
+                }
+            }
+            var m=setmessage("hello");
+            console.log(m("김시연"))
+            console.log(m("김우주"))
+            console.log(m("김춘향"))
         </script>
     </head>
     <body>

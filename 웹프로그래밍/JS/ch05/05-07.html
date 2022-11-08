@@ -5,7 +5,12 @@
         <title>05-07</title>
         <script type="text/javascript">
             var data1 = [ 10,20,30,40,50,60,70,80 ];
-            var data2 = {
+            var result1=data1.filter(function(val,index){
+                if(index%2==0){
+                    return true;
+                }
+            })
+            var data = {
                 class : "3-3",
                 subject : "korean",
                 scores : [
@@ -19,7 +24,22 @@
                 ]
             }; 
             var condition= { min : 70, max : 90 };
-   
+            var result=data.scores.filter(function(val,index){
+                if(val.score>=80){
+                    return true;
+                }
+            })
+            data.scores.forEach(function (val,index){
+                console.log((index+1)+":"+val.name+":"+val.score)
+            });
+            var obj={sum:0,count:0};
+            var result=data.scores.map(function(val,index){
+                var score=val.correct/val.total*100
+                this.sum+=score
+                this.count+=1
+                return {"name":val.name,"score":score}
+            },obj);
+            console.log(result)
         </script>
     </head>
     <body>

@@ -9,7 +9,7 @@
     <div id="exmaple">
         <select id="regions">
             <option disabled="disabled" selected>지역을 선택하세요</option>
-            <option >{{ index+1 }} : {{val}}</option>
+            <option v-for="(val, key, index) in regions" v-bind:value="key">{{ index+1 }} : {{val}}</option>
         </select>
     </div>
     <script type="text/javascript">
@@ -20,6 +20,10 @@
             "D" : "Africa",
             "E" : "Oceania"
         };
+        var list=new Vue({
+            el:"#example",
+            data:{regions:regions}
+        })
 
         
     </script>
