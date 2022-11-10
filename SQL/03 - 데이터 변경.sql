@@ -35,12 +35,15 @@ UPDATE employee
             
             
 -- Q) 홍길동(S0001)의 이름을 '홍길명'으로 변경
-
+select * from employee;
+update employee set emp_name="홍길명"
+where emp_id ="S0001";
 
 
 -- Q) 정보시스템(SYS) 직원의 급여를 일괄적으로 1,000만원 인상
-
-
+update employ 
+set salary=salary+1000
+where dept_id="SYS";
 
 -- 3) DELETE
 

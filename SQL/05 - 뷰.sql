@@ -2,6 +2,40 @@
 뷰(Views)
 */
 
+use hrdb2019;
+
+create view 근무중 직원
+as 
+select e.emp_name,e.emp_id,e.dept_id,d.dept_name,e.hire_date,e.email
+	from employee as e
+	inner join department as d on e.dept_id=d.dept_id
+	where e.retire_date is null;
+
+select * from 근무중직원;
+
+select e.emp_name,e.emp_id,e.dept_id,d.dept_name,e.hire_date,e.email,
+ntile(3) over(order by e.salary desc) as 순위
+	from employee as e
+	inner join department as d on e.dept_id=d.dept_id
+	where e.retire_date is null;
+    
+-- 1,2,3 대신 상,중,하 표시
+select e.emp_name,e.emp_id,e.dept_id,d.dept_name,e.hire_date,e.email,
+elt (ntile(3) over(order by e.salary desc),'상','중','하') as 순위
+	from employee as e
+	inner join department as d on e.dept_id=d.dept_id
+	where e.retire_date is null;
+
+-- 전체 누적합과 이동평균조회
+select emp_name,dept_id,hire_date,salary,
+sum(salary) over(partition by dept_id order by hire_date asc) as tot_salary, -- 누적 이동평균이 만들어짐
+avg(salary) over(partition by dept_id order by hire_date asc) as avg_salary
+from employee
+where salary>0;
+
+
+
+
 USE myshop2019;
 
 

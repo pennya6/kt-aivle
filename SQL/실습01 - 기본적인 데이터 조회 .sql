@@ -7,52 +7,59 @@ USE MyShop2019;
 
 
 -- Q01) customer 테이블 모든 행과 열을 조회하고 어떤 열들이 있는지, 데이터 형식은 어떻게 되는지 살펴보세요.
-
+select * from customer;
 
 -- Q02) employee 테이블 모든 행과 열을 조회하고 어떤 열들이 있는지, 데이터 형식은 어떻게 되는지 살펴보세요.
-
+select * from employee;
 
 -- Q03) product 테이블 모든 행과 열을 조회하고 어떤 열들이 있는지, 데이터 형식은 어떻게 되는지 살펴보세요.
-
+select * from product;
 
 -- Q04) order_header 테이블 모든 행과 열을 조회하고 어떤 열들이 있는지, 데이터 형식은 어떻게 되는지 살펴보세요.
-
+select * from order_header;
 
 -- Q05) order_detail 테이블 모든 행과 열을 조회하고 어떤 열들이 있는지, 데이터 형식은 어떻게 되는지 살펴보세요.
-
+select * from order_detail;
 
 -- Q06) 이름이 '홍길동'인 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-
+select * from customer where customer_name="홍길동";
 
 -- Q07) 여자 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-
+select * from customer where gender="F";
 
 -- Q08) '울산' 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-
+select * from customer where city="울산";
 
 -- Q09) 포인트가 500,000 이상인 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-
+select * from customer where point>=500000;
 
 -- Q10) 이름에 공백이 들어간 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
 
 
 -- Q11) 전화번호가 010으로 시작하지 않는 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-
+select * from customer where phone not like "010%";
  
 -- Q12) 포인트가 500,000 이상 '서울' 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-
+select * from customer where point>=500000 and city="서울";
 
 -- Q13) 포인트가 400,000 이상인 '서울' 지역 남자 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-
+select * from customer where point>=400000 and city="서울";
 
 -- Q14) '강릉' 또는 '원주' 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-   
+   select * from customer where city in('강릉','원주');
 
 -- Q15) 포인트가 400,000 이상, 500,000 이하인 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-
+select * from customer where point between 400000 and 500000;
 
 -- Q16) 1990년에 출생한 고객의 이름, 아이디, 성별, 지역, 전화번호, 생일, 포인트를 조회하세요.
 --      단, CASE 문을 사용해 성별은 '남자', '여자'로 표시되게 하세요.
+select customer_id,customer_name ,
+	case when gender='F' then '여자'
+    when gender= 'M' then '남자'
+    else ' ' end as gender,
+city,phone,birth_date,point
+from customer
+where year(birth_date)=1990;
 
 
 -- Q17) 1990년에 출생한 여자 고객의 이름, 아이디, 성별, 지역, 전화번호, 생일, 포인트를 조회하세요.

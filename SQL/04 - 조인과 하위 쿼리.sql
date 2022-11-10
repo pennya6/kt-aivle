@@ -36,7 +36,22 @@ SELECT e.emp_id, e.emp_name, e.dept_id, d.dept_name, e.phone, e.email
 	WHERE e.hire_date BETWEEN '2014-01-01' AND '2015-12-31' 
 		AND e.retire_date IS NULL;
         
-        
+-- 부서이름 포함한 휴가 정보 조회
+select v.emp_id, d.dept_name,v.begin_date,v.duration,v.reason
+from vacation as v
+join employee as e on  v.emp_id=e.emp_id
+join department as d on e.dept_id = d.dept_id;
+
+select * from department;
+select * from vacation;
+select * from employee;
+
+-- 직원들의 휴가 현황
+select e.emp_name,e.dept_id,e.hire_date,v.begin_date,v.duration,v.reason
+from employee as e
+join vacation as v on e.emp_id =v.emp_id
+order by e.emp_name asc, v.begin_date desc;
+
 -- 2) INNER JOIN
 
 /*
@@ -164,6 +179,12 @@ SELECT d.dept_id, d.dept_name, d.unit_id, u.unit_name
 - JOIN 문보다 작성하기가 쉬움
 */
 
+-- 홍길동과 같은 부서에 근무하는 직원 정보
+select emp_id, emp_name,dept_id,phone,email,salary
+from employee
+where dept_id=(select dept_id from employee where emp_id='S0001')
+and retire_date is null;
+
 -- 가장 급여를 많이 받는 직원
 SELECT emp_id, emp_name, dept_id, phone, email, salary
 	FROM employee
@@ -188,9 +209,14 @@ SELECT emp_id, emp_name, dept_id, phone, email
 
 
 -- Q) 가장 최근에 퇴사한 직원 정보 조회
-
+select max(retire_date),emp_id,emp_name
+from employee
+where retire_date is not null;
     
     
 -- Q) 강우동(S0003)보다 급여를 많이 받는 직원 정보 조회
 
 
+-- inner join
+-- outer join(left, right)
+-- cross join 

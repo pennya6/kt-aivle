@@ -37,11 +37,12 @@ SELECT MAX(salary) AS max_salary,
 
 
 -- Q) 홍길동의 2014년 휴가 일수 합계 조회  
-
-
+select count(*)
+from employee , vacation
+where employee.emp_name="홍길동" and employee.emp_id=vacation.emp_id and year(vacation.begin_date)=2014;
 
 -- Q) 가장 최근에 직원이 입사한 날짜 조회
-
+select * from employee where hire_date=(select max(hire_date)from employee);
  
 
 -- 2) 집계 함수와 NULL 값
@@ -112,11 +113,16 @@ SELECT dept_id,
 
 
 -- Q) 근무 중인 직원의 부서별 급여 합 조회
-
-
+select sum(ifnull(salary,0)) as salary,dept_id 
+from employee 
+where retire_date is NULL 
+group by dept_id;
 
 -- Q) 부서별로 급여가 5,000보다 많은 근무중인 직원 수 조회
-
+select count(emp_id),dept_id
+from employee 
+where retire_date is NULL and salary>5000
+group by dept_id;
 
 
 -- 4) 집계 결과에 대한 조건
@@ -146,7 +152,11 @@ SELECT dept_id, COUNT(*) AS emp_count
     
 
 -- Q) 2017년 휴가일수 합이 5가 넘는 직원의 사번과 휴가일수 합 조회
-
+select emp_id,sum(duration)
+from vacation
+where year(begin_date)=2017 
+group by emp_id
+having sum(duration)>=5;
 
 
 -- Q) 2017년에 3회 이상 휴가를 간 직원의 사번과 휴가 횟수 조회
