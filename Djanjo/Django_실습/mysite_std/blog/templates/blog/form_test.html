@@ -2,7 +2,7 @@
 {% block title %} Form Test {% endblock %}
 {% block content %}
     <form action="" method="post"  enctype="multipart/form-data">    
-        
+        {% csrf_token %}
         아이디 : <input type="text" name="id"><br>
         비밀번호 : <input type="password" name="pwd"><br>
         사진 : <input type="file" name="image"><br>

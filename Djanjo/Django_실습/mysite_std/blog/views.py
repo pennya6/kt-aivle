@@ -49,9 +49,60 @@ def test7(request):
 
 def list(request):
     post_list = Post.objects.all()
-    return HttpResponse(post_list)
+    search_key=request.GET.get("keyword")
+    if search_key:
+        post_list=Post.objects.filter(title_icontains=search_key)
+    return render(request,'blog/list.html',{'post_all':post_list,'q':search_key})
 
 
 def detail(request, id):
     post = get_object_or_404(Post, id=id)
     return HttpResponse(post.title)
+
+def post_create(request):
+    if request.method=='POST':
+        form=PostModelForm(request.POST)
+        if form.is_valid():
+            #true, false 제공 메소드
+            print(form.cleaned_data) # 내부적으로 만들어지는 메소드
+            #post=Post.objects.create(**form.cleaned_data)
+            post=form.save() #-> 데이터 바인딩
+            return redirect(post)
+    else:
+        form=PostModelForm()
+        return render(request,'blog/post_form.html',{'form':form})
+
+def post_update(request,id):
+    post=Post.objects.get(id=id) #필드명
+    if request.method=='POST':
+        form=PostModelForm(request.POST,instance=post)
+        if form.is_valid():
+            #true, false 제공 메소드
+            print(form.cleaned_data) # 내부적으로 만들어지는 메소드
+            #새로운 인스턴스를 만들어서 새로 만들어짐 -> 수정이 아님
+            post=form.save() #-> 데이터 바인딩
+            return redirect(post)
+    else:
+        #키값에 맞춰서 짠 나온다!
+        form=PostModelForm(instance=post) # 인스턴스 post 값으로 넣어주세요
+        return render(request,'blog/post_update.html',{'form':form})
+
+#삭제 방법
+# 모델 인스턴스.delete()
+# QuerySet.delete()
+def post_delete(request,id):
+    post=Post.objects.get(id=id)
+    if request.method=='POST':
+        post.delete()
+        return redirect("blog:list")
+    else:
+        return render(request,'blog/post_delete.html',{'post':post})  
+
+# 1. 데이터 추출 requset.post
+# 2. 유효성 검증 -> 입력페이지로 이동
+# 3. 모델인스턴스.save()
+# 모델명 objects.create(인자값...)
+
+# 수정작업 로직
+# 1. 확인 -> 2. update
+

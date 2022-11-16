@@ -6,7 +6,8 @@ class PostForm(forms.Form):
     body = forms.CharField(label='내용', widget=forms.Textarea)
 
 
-# class PostModelForm(forms.ModelForm):
-#     class Meta:
-#         model = Post
-#         fields = ['title', 'body', 'region']
+class PostModelForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'body', 'region']
+        

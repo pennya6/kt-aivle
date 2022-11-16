@@ -4,8 +4,7 @@
     <h1>{{post.title}}</h1>
     제목 : {{post.title}} <br/>
     내용 : {{post.body}} <br/>
-
-    {% comment %}    
+ 
     지역 : {{post.region}} <br>
     
     <hr><p>댓글</p>
@@ -24,6 +23,5 @@
     <a href="{% url 'blog:list' %}">[목록 보기]</a>
     <a href="{% url 'blog:update' post.id %}">[글 수정]</a>
     <a href="{% url 'blog:delete' post.id %}">[글 삭제]</a>
-    {% endcomment %}
 
 {% endblock %}
