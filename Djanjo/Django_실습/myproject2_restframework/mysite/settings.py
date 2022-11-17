@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'api2.apps.Api2Config',
 
-    'rest_framework',
+    'rest_framework', # 앱등록
 
     'django.contrib.admin',
     'django.contrib.auth',
